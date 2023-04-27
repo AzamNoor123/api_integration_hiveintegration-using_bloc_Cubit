@@ -31,7 +31,6 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
             name: apidata_list[i][CommonKeys.nameKey],
             avater: apidata_list[i][CommonKeys.avatarKey]);
         apilist.add(model);
-        print(apilist);
       }
       emit(ApiLoadedState(apilist));
     });

@@ -8,9 +8,11 @@ abstract class HiveEvent extends Equatable {
 }
 
 class ValueAdded extends HiveEvent {
-  final String data;
+  final User data;
 
-  const ValueAdded(this.data);
+  const ValueAdded({required this.data});
+  @override
+  List<Object> get props => [data];
 }
 
 class ValueLoaded extends HiveEvent {

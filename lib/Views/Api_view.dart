@@ -22,10 +22,15 @@ class _ApiViewState extends State<ApiView> {
 
   @override
   void initState() {
-    print('api init state working start now');
     BlocProvider.of<ApiBloc>(context).add(ApiLoad());
-    print('Api init state working end');
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    super.dispose();
   }
 
   final GlobalKey key2 = GlobalKey();

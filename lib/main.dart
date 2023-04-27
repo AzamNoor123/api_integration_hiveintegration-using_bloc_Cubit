@@ -8,6 +8,7 @@ import 'package:task_3_bloc/Views/root.dart';
 import 'package:task_3_bloc/bloc/Api_Bloc/bloc/api_bloc.dart';
 import 'package:task_3_bloc/bloc/Firebase_bloc/firebase_bloc.dart';
 import 'package:task_3_bloc/bloc/hive_bloc.dart';
+import 'package:task_3_bloc/bloc/hivemodel.dart';
 import 'package:task_3_bloc/utills/helper/common_keys.dart';
 import 'package:task_3_bloc/utills/helper/constant_resources.dart';
 
@@ -19,7 +20,8 @@ void main() async {
 
   await Hive.initFlutter();
   Hive.init(appDocumentsDir.path);
-  await Hive.openBox(CommonKeys.hiveBoxKey);
+  Hive.registerAdapter(UserAdapter());
+  await Hive.openBox<User>(CommonKeys.hiveBoxKey);
 }
 
 class MyApp extends StatelessWidget {

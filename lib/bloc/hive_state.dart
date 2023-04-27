@@ -24,8 +24,11 @@ class DataAddState extends HiveState {
 }
 
 class DataLoadState extends HiveState {
+  final List<User> data;
+  const DataLoadState({required this.data});
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [data];
 }
 
 class LoadingState extends HiveState {
