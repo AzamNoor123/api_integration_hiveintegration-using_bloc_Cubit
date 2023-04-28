@@ -62,7 +62,7 @@ class _LocalDbViewState extends State<LocalDbView> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    if (field.currentState!.validate()) {
+                    if (field.currentState?.validate() ?? false) {
                       context.read<HiveBloc>().add(
                           ValueAdded(data: User(_textEditingController.text)));
                       ScaffoldMessenger.of(context)

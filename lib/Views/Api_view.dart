@@ -33,7 +33,7 @@ class _ApiViewState extends State<ApiView> {
     super.dispose();
   }
 
-  final GlobalKey key2 = GlobalKey();
+  final GlobalKey<FormState> key2 = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -45,15 +45,20 @@ class _ApiViewState extends State<ApiView> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              customTextField(
-                name: ConsTResources.text.captilize,
-                hint: ConsTResources.hint.captilize,
-                controller: _textEditingController,
+              Form(
+                key: key2,
+                child: customTextField(
+                  name: ConsTResources.text.captilize,
+                  hint: ConsTResources.hint.captilize,
+                  controller: _textEditingController,
+                ),
               ),
               ElevatedButton(
                 onPressed: () {
-                  BlocProvider.of<ApiBloc>(context)
-                      .add(ApiSort(_textEditingController.text.captilize));
+                  if (key2.currentState?.validate() ?? false) {
+                    BlocProvider.of<ApiBloc>(context)
+                        .add(ApiSort(_textEditingController.text.captilize));
+                  }
                 },
                 child: Text(ConsTResources.searchBtn.captilize),
               ),

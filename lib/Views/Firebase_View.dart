@@ -56,7 +56,7 @@ class _FirebaseViewState extends State<FirebaseView> {
                 },
                 child: ElevatedButton(
                   onPressed: () {
-                    if (_key.currentState!.validate()) {
+                    if (_key.currentState?.validate() ?? false) {
                       BlocProvider.of<FirebaseBloc>(context).add(
                         UploadData(_textEditingController.text),
                       );
@@ -78,7 +78,7 @@ class _FirebaseViewState extends State<FirebaseView> {
                   }
                   return SizedBox(
                     height: 300,
-                    width: context.CT_width * DimenResource.D_400,
+                    width: context.CT_width * DimenResource.D_500,
                     child: ListView.builder(
                       itemCount: snapshot.data?.docs.length,
                       itemBuilder: (context, index) {
