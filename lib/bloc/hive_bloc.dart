@@ -1,13 +1,9 @@
-import 'dart:math';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
-import 'package:task_3_bloc/utills/helper/common_keys.dart';
 import 'package:task_3_bloc/utills/helper/constant_resources.dart';
 
-import '../Boxes.dart';
-import 'hivemodel.dart';
+import '../Models/hivemodel.dart';
 
 part 'hive_event.dart';
 
@@ -17,10 +13,10 @@ class HiveBloc extends Bloc<HiveEvent, HiveState> {
   HiveBloc() : super(HiveInitial()) {
     Box<User> boxdata;
     List<User> data = [];
-    //User? userdata;
+
     on<ValueAdded>((event, emit) async {
       emit(LoadingState());
-      Future.delayed(const Duration(seconds: 1));
+      Future.delayed(const Duration(seconds: ConsTResources.delay));
       try {
         final box = Boxes.getData();
         box.add(event.data);
@@ -33,7 +29,7 @@ class HiveBloc extends Bloc<HiveEvent, HiveState> {
 
     on<ValueLoaded>((event, emit) async {
       emit(LoadingState());
-      Future.delayed(Duration(seconds: 1));
+      Future.delayed(const Duration(seconds: 1));
 
       try {
         boxdata = Boxes.getData();
@@ -45,4 +41,8 @@ class HiveBloc extends Bloc<HiveEvent, HiveState> {
       }
     });
   }
+}
+
+class Boxes {
+  static Box<User> getData() => Hive.box<User>(ConsTResources.hiveBoxKey);
 }

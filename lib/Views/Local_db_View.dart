@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:task_3_bloc/bloc/hive_bloc.dart';
-import 'package:task_3_bloc/bloc/hivemodel.dart';
+import 'package:task_3_bloc/Models/hivemodel.dart';
 import 'package:task_3_bloc/utills/CustomTextField.dart';
 import 'package:task_3_bloc/utills/helper/Dimension.dart';
 import 'package:task_3_bloc/utills/helper/Snakbar_extension.dart';
@@ -13,6 +13,8 @@ import 'package:task_3_bloc/utills/helper/Widgets_extension.dart';
 import 'package:task_3_bloc/utills/helper/common_keys.dart';
 import 'package:task_3_bloc/utills/helper/constant_resources.dart';
 import 'package:task_3_bloc/utills/helper/custom_extension.dart';
+
+import '../utills/helper/string_resources.dart';
 
 class LocalDbView extends StatefulWidget {
   const LocalDbView({Key? key}) : super(key: key);
@@ -41,7 +43,7 @@ class _LocalDbViewState extends State<LocalDbView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(ConsTResources.localDbView),
+        title: const Text(StringResources.localDbView),
         centerTitle: true,
       ),
       body: BlocConsumer<HiveBloc, HiveState>(
@@ -55,8 +57,8 @@ class _LocalDbViewState extends State<LocalDbView> {
                 Form(
                   key: field,
                   child: customTextField(
-                    name: ConsTResources.text.captilize,
-                    hint: ConsTResources.hint.captilize,
+                    name: StringResources.text.captilize,
+                    hint: StringResources.hint.captilize,
                     controller: _textEditingController,
                   ),
                 ),
@@ -66,13 +68,13 @@ class _LocalDbViewState extends State<LocalDbView> {
                       context.read<HiveBloc>().add(
                           ValueAdded(data: User(_textEditingController.text)));
                       ScaffoldMessenger.of(context)
-                          .custmSnakeBar(ConsTResources.snakBarMsg);
+                          .custmSnakeBar(StringResources.snakBarMsg);
                       _textEditingController.clear();
                     } else {
-                      return null;
+                      return;
                     }
                   },
-                  child: Text(ConsTResources.submitBtn.captilize),
+                  child: Text(StringResources.submitBtn.captilize),
                 ),
                 SizedBox(
                   height: context.CT_height * DimenResource.D_0_1,
@@ -96,14 +98,14 @@ class _LocalDbViewState extends State<LocalDbView> {
                                         return ListTile(
                                           tileColor: Colors.pinkAccent,
                                           title: Text(state.data[i].name),
-                                        ).padding(EdgeInsets.all(10));
+                                        ).padding(const EdgeInsets.all(10));
                                       }))
                             ],
                           ),
                         );
                       }
                     }
-                    return const Text('No data Found');
+                    return const Text(StringResources.dataNotFound);
                   },
                 )
               ],

@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:task_3_bloc/bloc/Api_Bloc/ApiModel.dart';
-import 'package:task_3_bloc/bloc/Api_Bloc/bloc/api_bloc.dart';
+import 'package:task_3_bloc/Models/Api_model.dart';
 import 'package:task_3_bloc/utills/helper/Dimension.dart';
 import 'package:task_3_bloc/utills/helper/String_extension.dart';
 import 'package:task_3_bloc/utills/helper/Widgets_extension.dart';
 import 'package:task_3_bloc/utills/helper/constant_resources.dart';
 import 'package:task_3_bloc/utills/helper/custom_extension.dart';
+import 'package:task_3_bloc/utills/helper/string_resources.dart';
 
+import '../bloc/Api/bloc/api_bloc.dart';
 import '../utills/CustomTextField.dart';
 
 class ApiView extends StatefulWidget {
-  ApiView({super.key});
+  const ApiView({super.key});
 
   @override
   State<ApiView> createState() => _ApiViewState();
 }
 
 class _ApiViewState extends State<ApiView> {
-  TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController _textEditingController = TextEditingController();
 
   @override
   void initState() {
@@ -39,7 +40,7 @@ class _ApiViewState extends State<ApiView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(ConsTResources.apiView.captilize),
+          title: Text(StringResources.apiView.captilize),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
@@ -48,8 +49,8 @@ class _ApiViewState extends State<ApiView> {
               Form(
                 key: key2,
                 child: customTextField(
-                  name: ConsTResources.text.captilize,
-                  hint: ConsTResources.hint.captilize,
+                  name: StringResources.text.captilize,
+                  hint: StringResources.hint.captilize,
                   controller: _textEditingController,
                 ),
               ),
@@ -60,7 +61,7 @@ class _ApiViewState extends State<ApiView> {
                         .add(ApiSort(_textEditingController.text.captilize));
                   }
                 },
-                child: Text(ConsTResources.searchBtn.captilize),
+                child: Text(StringResources.searchBtn.captilize),
               ),
               SizedBox(
                   height: context.CT_height * DimenResource.D_0_5,
@@ -86,12 +87,11 @@ class _ApiViewState extends State<ApiView> {
                               );
                             });
                       }
-                      return Text(ConsTResources.dataNotFound.captilize);
+                      return Text(StringResources.dataNotFound.captilize);
                     },
                   )),
             ],
           ),
         ));
-    ;
   }
 }

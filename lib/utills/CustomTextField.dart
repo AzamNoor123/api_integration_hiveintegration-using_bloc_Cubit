@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_3_bloc/utills/helper/string_resources.dart';
 
 import 'helper/Dimension.dart';
 
@@ -20,7 +21,7 @@ class customTextField extends StatelessWidget {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (val) {
         if (val == null || val.isEmpty) {
-          return 'Enter Data in Field';
+          return StringResources.enter_fied;
         } else {
           return null;
         }

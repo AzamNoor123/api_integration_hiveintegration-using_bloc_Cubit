@@ -11,8 +11,11 @@ import 'package:task_3_bloc/utills/helper/constant_resources.dart';
 import 'package:task_3_bloc/utills/helper/custom_extension.dart';
 
 import '../utills/CustomTextField.dart';
+import '../utills/helper/string_resources.dart';
 
 class FirebaseView extends StatefulWidget {
+  const FirebaseView({super.key});
+
   @override
   _FirebaseViewState createState() => _FirebaseViewState();
 }
@@ -31,7 +34,7 @@ class _FirebaseViewState extends State<FirebaseView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(ConsTResources.firebaseView.captilize),
+        title: Text(StringResources.firebaseView.captilize),
         centerTitle: true,
       ),
       body: SizedBox(
@@ -42,8 +45,8 @@ class _FirebaseViewState extends State<FirebaseView> {
               Form(
                 key: _key,
                 child: customTextField(
-                  name: ConsTResources.text.captilize,
-                  hint: ConsTResources.hint.captilize,
+                  name: StringResources.text.captilize,
+                  hint: StringResources.hint.captilize,
                   controller: _textEditingController,
                 ),
               ),
@@ -51,7 +54,7 @@ class _FirebaseViewState extends State<FirebaseView> {
                 listener: (context, state) {
                   if (state is FirebaseDataUploaded) {
                     ScaffoldMessenger.of(context)
-                        .custmSnakeBar(ConsTResources.snakBarMsg.captilize);
+                        .custmSnakeBar(StringResources.snakBarMsg.captilize);
                   }
                 },
                 child: ElevatedButton(
@@ -62,15 +65,15 @@ class _FirebaseViewState extends State<FirebaseView> {
                       );
                       _textEditingController.clear();
                     } else {
-                      return null;
+                      return;
                     }
                   },
-                  child: const Text(ConsTResources.submitBtn),
+                  child: const Text(StringResources.submitBtn),
                 ),
               ),
               StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
-                    .collection(CommonKeys.dbKeys)
+                    .collection(ConsTResources.db)
                     .snapshots(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {

@@ -4,10 +4,10 @@ import 'package:task_3_bloc/Views/Api_view.dart';
 import 'package:task_3_bloc/Views/Firebase_View.dart';
 import 'package:task_3_bloc/Views/Local_db_View.dart';
 import 'package:task_3_bloc/utills/helper/custom_extension.dart';
-
 import '../Navigation_cubit/cubit_state.dart';
 import '../Navigation_cubit/navigation_cubit.dart';
 import '../utills/helper/constant_resources.dart';
+import '../utills/helper/string_resources.dart';
 
 enum NavbarItem { firebase, api, localdb }
 
@@ -29,21 +29,21 @@ class RootScreen extends StatelessWidget {
                     height: context.CT_height * .05,
                     width: context.CT_width * .05,
                   ),
-                  label: ConsTResources.firebaseLabel),
+                  label: StringResources.firebaseLabel),
               BottomNavigationBarItem(
                   icon: Image.asset(
                     ConsTResources.api_image,
                     height: context.CT_height * .05,
                     width: context.CT_width * .05,
                   ),
-                  label: ConsTResources.apiLabel),
+                  label: StringResources.apiLabel),
               BottomNavigationBarItem(
                   icon: Image.asset(
                     ConsTResources.localdb_image,
                     height: context.CT_height * .05,
                     width: context.CT_width * .05,
                   ),
-                  label: ConsTResources.localDblabel)
+                  label: StringResources.localDblabel)
             ],
             onTap: (index) {
               if (index == 0) {
@@ -65,7 +65,7 @@ class RootScreen extends StatelessWidget {
         if (state.navbarItem == NavbarItem.firebase) {
           return FirebaseView();
         } else if (state.navbarItem == NavbarItem.api) {
-          return ApiView();
+          return const ApiView();
         } else if (state.navbarItem == NavbarItem.localdb) {
           return const LocalDbView();
         }

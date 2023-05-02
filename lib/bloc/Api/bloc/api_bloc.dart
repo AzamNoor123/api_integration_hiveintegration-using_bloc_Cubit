@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:task_3_bloc/utills/helper/common_keys.dart';
 import 'package:task_3_bloc/utills/helper/constant_resources.dart';
 
-import '../ApiModel.dart';
+import '../../../Models/Api_model.dart';
 
 part 'api_event.dart';
 
@@ -20,16 +20,16 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     on<ApiLoad>((event, emit) async {
       emit(ApiLoading());
 
-      Future.delayed(const Duration(seconds: 1));
+      Future.delayed(const Duration(seconds: ConsTResources.delay));
       const url = ConsTResources.apiUrl;
       final response = await http.get(Uri.parse(url));
       print(response.statusCode);
       var apibody = jsonDecode(response.body);
-      List apidata_list = apibody[CommonKeys.apiDataKey].toList();
-      for (var i = 0; i < apidata_list.length; i++) {
+      List apidataList = apibody[CommonKeys.API_DATA_KEY].toList();
+      for (var i = 0; i < apidataList.length; i++) {
         var model = ApiModel(
-            name: apidata_list[i][CommonKeys.nameKey],
-            avater: apidata_list[i][CommonKeys.avatarKey]);
+            name: apidataList[i][CommonKeys.NAME_YEY],
+            avater: apidataList[i][CommonKeys.AVATAR_KEY]);
         apilist.add(model);
       }
       emit(ApiLoadedState(apilist));

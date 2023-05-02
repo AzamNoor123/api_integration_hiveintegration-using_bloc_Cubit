@@ -1,9 +1,7 @@
 class CommonKeys {
-  static String avatarKey = 'avatar';
-  static String nameKey = 'first_name';
-  static String apiDataKey = 'data';
-  static String hiveBoxKey = 'myBox';
-  static String hiveBoxField = 'name';
-  static String dbKeys = 'DbUser';
-  static String dbDocsKeysUser = 'user';
+  static String AVATAR_KEY = 'avatar';
+  static String NAME_YEY = 'first_name';
+  static String API_DATA_KEY = 'data';
+  static String DB_KEYS = 'DbUser';
+  static String DB_DOCS_KEY_USER = 'user';
 }

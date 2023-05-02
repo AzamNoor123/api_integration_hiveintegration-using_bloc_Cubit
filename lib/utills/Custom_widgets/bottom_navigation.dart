@@ -3,6 +3,7 @@ import 'package:task_3_bloc/utills/helper/Dimension.dart';
 import 'package:task_3_bloc/utills/helper/custom_extension.dart';
 
 import '../helper/constant_resources.dart';
+import '../helper/string_resources.dart';
 
 class Bottom_Navigation_Bar extends StatefulWidget {
   const Bottom_Navigation_Bar({
@@ -26,21 +27,21 @@ class _Bottom_Navigation_BarState extends State<Bottom_Navigation_Bar> {
               height: context.CT_height * DimenResource.D_0_5,
               width: context.CT_width * DimenResource.D_0_5,
             ),
-            label: ConsTResources.firebaseLabel),
+            label: StringResources.firebaseLabel),
         BottomNavigationBarItem(
             icon: Image.asset(
               ConsTResources.api_image,
               height: context.CT_height * DimenResource.D_0_5,
               width: context.CT_width * DimenResource.D_0_5,
             ),
-            label: ConsTResources.apiLabel),
+            label: StringResources.apiLabel),
         BottomNavigationBarItem(
             icon: Image.asset(
               ConsTResources.localdb_image,
               height: context.CT_height * DimenResource.D_0_5,
               width: context.CT_width * DimenResource.D_0_5,
             ),
-            label: ConsTResources.localDblabel)
+            label: StringResources.localDblabel)
       ],
     );
   }
